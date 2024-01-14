@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% block title %} Sign up {% endblock %}
+{% block content %}
+{% csrf_token %}
+<form action="/register/" method="post">
+    <div class="inputs">
+        <label>Full name</label>
+        <input type="text" name="full_name" required>
+    </div>
+    <div class="inputs">
+        <label>user name</label>
+        <input type="text" name="user_name" required>
+    </div>
+    <div class="inputs">
+        <label>Email id</label>
+        <input type="email" name="email" required>
+    </div>
+    <div class="inputs">
+        <label>Country</label>
+        <input type="text" name="country" required>
+    </div>
+    <div class="inputs">
+        <label>Birth date</label>
+        <input type="date" name="bdate" required>
+    </div>
+    <div class="inputs">
+        <label>password</label>
+        <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one uppercase, and one lowercase letter, and be at least 8 characters long" required>
+    </div>
+    <div class="inputs">
+        <label>Confirm password</label>
+        <input type="password" name="confirm" required>
+    </div>
+    <div class="inputs">
+        <button type="submit" class="dark-mode-button">Sign up</button>
+    </div>
+</form>
+{% endblock %}

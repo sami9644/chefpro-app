@@ -1,0 +1,19 @@
+{% extends "recipe_info.html" %}
+{% block content %}
+<div class="comments">
+    <button onclick="location.href='/recipe?id={{recinfo.0}}'">X</button>
+    {% if comments %}
+        {% for comment in comments %}
+            <div class="comment">
+            <!-- <div class="profile">
+            <img src="/static/images/icons/foods.jpg" style="width: 50px;height:50px;border-radius:50%">
+            <p>Johndoe</p>
+            </div>&nbsp;&nbsp;&nbsp; -->
+            <i style="word-wrap: break-word;">{{ comment.2 }}</i>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center;">No comments yet</p>
+    {% endif %}
+  </div>
+{% endblock %}

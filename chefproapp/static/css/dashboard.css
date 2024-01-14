@@ -1,0 +1,198 @@
+@keyframes anim {
+    to {opacity: 1;}
+}
+* {
+    color: #fff;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url("/static/images/icons/foods.jpg") no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navbar {
+    width: 90%;
+    height: auto;
+    padding: .4em;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+a {
+    padding: .5em;
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all .3s linear;
+}
+a:hover {
+    font-weight: bolder;
+}
+.dp {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.options {
+    width: auto;
+    height: auto;
+    background-color: black;
+   position: relative;
+   display: none;
+}
+.dp:hover .options {
+    display: flex;
+}
+.contents {
+    width: 90%;
+    height: 70%;
+    background-color: rgb(25, 24, 24);
+    padding: .4em;
+    margin-top: 2%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.form * {
+    color: #fff;
+    font-size: 1.1rem;
+}
+.form {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.inputs {
+    width: 100%;
+    height: auto;
+    padding: .4em;
+    display: flex;
+    flex-direction: column;
+}
+
+input,textarea {
+    outline: none;
+    background-color: transparent;
+    border: solid 2px #949090;
+}
+/* Styling for the button */
+button {
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    padding: .5em; /* Padding for the button */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Glow effect on hover */
+button:hover {
+    background-color: #555; /* Darker background on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2); /* Enhanced 3D effect */
+  }
+  .foods {
+    display: flex;
+    flex-wrap: nowrap; /* Prevents items from wrapping */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Enables scroll snapping */
+    -webkit-overflow-scrolling: touch;
+    height: 85%;
+    padding-bottom: 1em; /* Enables smooth scrolling on iOS devices */
+}
+
+.food {
+    flex: 0 0 auto; /* Prevents flex items from shrinking */
+    width: 100%; /* Set the width of each item */
+    margin-right: 10px; /* Space between items */
+    scroll-snap-align: start; /* Specifies where to align snap positions */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.food img {
+    width: 70%;
+    height: 70%;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;  /* Rounded corners */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;  /* Rounded corners */
+  }
+.action {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.menu {
+    display: none;
+}
+@media (max-width:768px) {
+    
+    * {
+        font-size: 13px;
+    }
+    body {
+        align-items: flex-start;
+        overflow-y: hidden;
+    }
+    .form {
+        width: 100%;
+        padding: 0;
+    }
+    .navbar {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .contents {
+        width: 100%;
+        padding: 1em;
+    }
+    .inputs {
+        width: 80%;
+        padding: 0;
+        margin-bottom: 2%;
+        
+    }
+    .links {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .menu {
+        display: flex;
+        padding-right: 1em;
+    }
+    .dp img {
+        width: 40px;
+        height: 40px;
+    }
+    .active {
+        display: flex;
+        opacity: 0;
+        animation: anim 2s linear forwards;
+        
+    }
+}

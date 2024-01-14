@@ -1,0 +1,106 @@
+@font-face {
+    font-family: gta;
+    font-weight: 20;
+    src: url("/static/images/fonts/Chocolate-Bar.otf");
+}
+* {
+    font-family: gta;
+    color: #fff;
+    
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url("/static/images/icons/foods.jpg") no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navbar {
+    width: 90%;
+    height: auto;
+    padding: .4em;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+a {
+    padding: .5em;
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all .3s linear;
+}
+a:hover {
+    font-weight: bolder;
+}
+.contents {
+    width: 90%;
+    height: 80%;
+    margin-top: 1.2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form * {
+    color: #fff;
+    font-size: 1.1rem;
+}
+form {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.inputs {
+    width: 100%;
+    height: auto;
+    padding: .4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+input {
+    outline: none;
+    background-color: transparent;
+    border: solid 2px #949090;
+}
+/* Styling for the button */
+.dark-mode-button {
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    padding: .5em; /* Padding for the button */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Glow effect on hover */
+  .dark-mode-button:hover {
+    background-color: #555; /* Darker background on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2); /* Enhanced 3D effect */
+  }
+  .footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    background-color: rgba(0,0,0,1);
+  }
+  .footer p {
+    color: #fff;
+  }
+  @media (max-width:768px) {
+    form {
+        width: 100%;
+    }
+  }

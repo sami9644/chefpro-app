@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block title %} Log in {% endblock %}
+{% block content %}
+{% csrf_token %}
+<form action="/savesession" method="post">
+    <div class="inputs">
+        <label>Email id</label>
+        <input type="email" name="email" required>
+    </div>
+    <div class="inputs">
+        <label>password</label>
+        <input type="password" name="password" required>
+    </div>
+    <div class="inputs">
+        <button type="submit" class="dark-mode-button">Sign in</button>
+    </div>
+</form>
+{% endblock %}

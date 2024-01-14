@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Reset some default styles */
+body, h1, p, ol, li {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  body {
+    background-color: #252323;
+  }
+  body * {
+    color: #fff;
+  }
+  /* Set full width for every block */
+  .intro, .details {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    
+  }
+  
+  /* Style the intro section */
+  .intro {
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding:0;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Style the links inside the intro section */
+  .intro a {
+    color: #fff;
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  
+  /* Style the logged-in user paragraph */
+  .intro p {
+    margin: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  
+  /* Style the details section */
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Style the title bar */
+  .title-bar {
+    width: 100%;
+    background-color: #443d3d;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  /* Style the steps section */
+  .steps {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Style the ordered list */
+  .steps ol {
+    list-style: upper-roman;
+  }
+  
+  /* Style list items inside ordered list */
+  .steps li {
+    margin-bottom: 4%;
+  }
+  .footer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    padding: 1em;
+  }
+  .stars {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .star {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    content: url("/static/images/icons/star_unchecked.svg");
+  }
+  .checked {
+    content: url("/static/images/icons/star_checked.svg");
+  }
+form * {
+    color: #fff;
+    font-size: 1.1rem;
+}
+form {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+}
+button {
+   padding: .3em;
+   font-size: 1.1rem;
+    background-color: #333;
+    margin-top: 2%;
+}
+input,textarea {
+    outline: none;
+    background-color: transparent;
+    border: solid 2px #949090;
+}
+.comments {
+  width: 70%;
+  height: 70%;
+  background-color: rgba(0,0,0,1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+}
+.comment {
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+.comments button {
+  margin: 0;
+  cursor: pointer;
+  margin-bottom: 2%;
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+  /* Make it responsive */
+  @media (max-width: 768px) {
+    .intro, .details {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer {
+        align-items: flex-start;
+    }
+    .stars {
+        width: 100%;
+        justify-content: center;
+    }
+    .star {
+        width: 30px;
+        height: 30px;
+    }
+    form {
+        width: 100%;
+        align-items: center;
+    }
+  }
+  
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details about recipe</title>
+</head>
+<body>
+    <div class="intro">
+        <a href="/">Home</a>
+        {% if session %}
+            <p>Logged in as {{ info.2 }}</p>
+        {% else %}
+            <div class="links">
+            <a href="/login">Log in</a>
+            <a href="/signup">Sign up</a>
+            </div>
+        {% endif %}
+    </div>
+    <div class="details">
+        <div class="title-bar">
+            <h1>{{ recinfo.1 }}</h1>
+            <p>This article was written by <b>{{ about_user.2 }}</b></p>
+            <p>Ingredients {{ recinfo.5 }}</p>
+        </div>
+        <div class="steps">
+            <ol>
+            {% for step in steps %}
+                <li>{{ step }}</li>
+            {% endfor %}
+            </ol>
+        </div>
+    </div>
+    <div class="footer">
+       {% if session != about_user.0 and session != None %}
+        <h3 style="color: #f2f2f2;">How many stars you give to this artice?</h3 style="color: #f2f2f2;">
+        <div class="stars">
+            <div class="star" id="one" onclick="checkToggle('one')"></div>
+            <div class="star" id="two" onclick="checkToggle('two')"></div>
+            <div class="star" id="three" onclick="checkToggle('three')"></div>
+            <div class="star" id="four" onclick="checkToggle('four')"></div>
+            <div class="star" id="five" onclick="checkToggle('five')"></div>
+        </div>
+            <form action="/rate/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="recipe" value="{{recinfo.0}}">
+                <input type="hidden" name="stars" value="5">
+                <textarea name="comment" cols="20" rows="4" style="resize: none;" placeholder="Leave comment" required></textarea>
+                <button type="submit">Submit comment</button>
+            </form>
+        {% endif %}
+        <button><a href="/comments/{{recinfo.0}}">View comments</a></button>
+    </div>
+    {% block content %}
+    
+    {% endblock %}
+    <script>
+      var stardisp = document.getElementsByName('stars')[0];
+      
+      function checkToggle(id) {
+        var stars = 
+        document.getElementById(id).classList.toggle('checked')
+        stardisp.value = document.querySelectorAll('.checked').length;
+      }
+    </script>
+</body>
+</html>

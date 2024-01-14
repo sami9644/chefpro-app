@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}User dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="dp">
+            <a href="/settings" title="Profile settings"><img src='{{ info.7 }}' width="70" height="70"></a>
+        </div>
+        <div class="menu" onclick="document.querySelector('.links').classList.toggle('active')">
+            menu
+        </div>
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="/add/recipe">Add recipe</a>
+            <a href="/manage/recipe">Manage your recipes</a>
+            <a href="/logout">Log out</a>
+        </div>
+    </div>
+
+    <div class="contents">
+        {% block content %}
+        <div class="foods">
+            {% for recipe in recipes %}
+                <div class="food">
+                   <img  src="{{ recipe.3 }}" alt="{{recipe.1}}" width="100">
+                   <h2>Recipe name : {{ recipe.1 }}</h2>
+                   <a href="/recipe?id={{recipe.0}}" target="_blank">Click here to read How to make this recipe</a>
+                   <div class="action">
+                    {% if recipe.4 == info.0 %}
+                        <!-- <form action="/delete/recipe" method="POST">
+                            <input type="hidden" name="recipe-id" value="{{recipe.0}}" required>
+                            <button type="submit">Delete recipe</button>
+                        </form> -->
+                    {% endif %}
+                   </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+        <p>Scroll ➔ to see more recipes</p>
+        {% endblock %}
+    </div>
+    <script>
+        var images = document.querySelectorAll('img')
+        for (let image of images) {
+            image.addEventListener('contextmenu',(ev) => {
+                ev.preventDefault();
+            })
+        }
+    </script>
+</body>
+</html>

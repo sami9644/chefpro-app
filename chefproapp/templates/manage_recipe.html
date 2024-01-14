@@ -1,0 +1,27 @@
+{% extends "dashboard.html" %}
+{% block title %} Manage recipe {% endblock %}
+{% block content %}
+<div class="foods">
+    {% if recipes %}
+        {% for recipe in recipes %}
+            <div class="food">
+            <img  src="{{ recipe.3 }}" alt="{{recipe.1}}" width="100">
+            <h2>Recipe name : {{ recipe.1 }}</h2>
+            <a href="/recipe?id={{recipe.0}}" target="_blank">Click here to read How to make this recipe</a>
+            {% csrf_token %}
+            <div class="action">
+                        <form action="/deleterecipe/" method="POST">
+                        <input type="hidden" name="recipe-id" value="{{recipe.0}}" required>
+                        <button type="submit">Delete recipe</button>
+                        </form>
+            </div>
+            </div>
+        {% endfor %}
+    {% else %}
+            <div class="error" style="width: 100%;height:100%;display:flex;justify-content:center;align-items:center;">
+            <h2>You didnt wrie any recipes yet!</h2>
+            </div>
+    {% endif %}
+    
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}chefpro{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="icon" href="/static/images/icons/chef pro.jpg">
+    <meta name="csrf_token" content="{{ csrf_token }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="/static/images/icons/chef pro.jpg" width="60">
+        </div>
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="/signup">Sign up</a>
+            <a href="/login">Log in</a>
+        </div>
+    </div>
+    <div class="contents">
+        {% block content %}
+        <img src="/static/images/icons/chef pro.gif" style="opacity: .6;width:100%;height:100%" oncontextmenu="return false" alt="bg">
+        {% endblock %}
+    </div>
+    <div class="footer">
+        <p>&copy;2024 chefpro all rights reserved!</p>
+    </div>
+    <script src="/static/js/index.js"></script>
+</body>
+</html>

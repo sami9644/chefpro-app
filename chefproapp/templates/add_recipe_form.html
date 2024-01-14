@@ -1,0 +1,26 @@
+{% extends "dashboard.html" %}
+{% block title %} Add new recipe {% endblock %}
+{% block content %}
+{% csrf_token %}
+<form class="form" action="/addrecipe/" method="post" enctype="multipart/form-data">
+    <div class="inputs">
+        <label>Recipe title</label>
+        <input type="text" name="title" required>
+    </div>
+    <div class="inputs">
+        <label>Write the steps to cook separated by comma</label>
+        <textarea name="steps" cols="30" rows="10" style="resize: none;" required></textarea>
+    </div>
+    <div class="inputs">
+        <label>Write the ingredients separated by comma</label>
+        <input type="text" name="ingredients" required>
+    </div>
+    <div class="inputs">
+        <label>Upload the food image</label>
+        <input type="file" name="image" accept=".jpg,.png,.gif" required>
+    </div>
+    <div class="inputs">
+        <button type="submit">Add recipe</button>
+    </div>
+</form>
+{% endblock %}
