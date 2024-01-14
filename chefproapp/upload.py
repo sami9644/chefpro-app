@@ -1,6 +1,6 @@
 import requests
 
-def upload_image_to_imgbb(image_data, api_key="9bb994443a8420673355072d7696e605"):
+def upload_image_to_imgbb(image_data, api_key):
     url = "https://api.imgbb.com/1/upload"
     
     params = {
